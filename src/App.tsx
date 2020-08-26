@@ -3,33 +3,32 @@ import {
   Box,
   Button,
   Collapsible,
-  Heading,
   Grommet,
   Layer,
   ResponsiveContext,
 } from 'grommet';
-import { FormClose, Notification } from 'grommet-icons';
-import AppBar from './components/AppBar';
+import { FormClose } from 'grommet-icons';
+import { customTheme } from './App.theme';
 
-import { theme } from './App.styles';
+import HeaderArea from './components/HeaderArea';
+
+type ThemeState = 'dark' | 'light' | undefined;
 
 function App() {
   const [showSidebar, setShowSidebar] = useState(false);
+  const [themeMode, setThemeMode] = useState<ThemeState>('light');
+
+  const toggleSidebar = () => {
+    setShowSidebar(!showSidebar);
+    setThemeMode(themeMode === 'light' ? 'dark' : 'light');
+  };
 
   return (
-    <Grommet theme={theme} full>
+    <Grommet themeMode={themeMode} theme={customTheme} full>
       <ResponsiveContext.Consumer>
         {(size) => (
           <Box fill>
-            <AppBar>
-              <Heading level='3' margin='none'>
-                Tagteam
-              </Heading>
-              <Button
-                icon={<Notification />}
-                onClick={() => setShowSidebar(!showSidebar)}
-              />
-            </AppBar>
+            <HeaderArea toggleSidebar={toggleSidebar} />
             <Box direction='row' flex overflow={{ horizontal: 'hidden' }}>
               <Box flex align='center' justify='center'>
                 app body
