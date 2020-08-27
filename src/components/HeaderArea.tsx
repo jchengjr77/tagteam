@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import AppBar from './AppBar';
 import logoLight from '../assets/logo-light.svg';
 import logoDark from '../assets/logo-dark.svg';
 
 import { Image, Button, Anchor, Box } from 'grommet';
-import { Notification } from 'grommet-icons';
+import { Actions } from 'grommet-icons';
 
 interface propTypes {
   toggleSidebar: () => void;
@@ -18,7 +18,15 @@ const HeaderArea = (props: propTypes) => {
 
   const anchorMargins = {
     horizontal: 'large',
+    vertical: 'auto',
   };
+
+  const themeIcon =
+    themeMode === 'dark' ? (
+      <Actions color='accent-1' />
+    ) : (
+      <Actions color='dark-2' />
+    );
 
   return (
     <AppBar background='transparent'>
@@ -28,8 +36,7 @@ const HeaderArea = (props: propTypes) => {
           fit='contain'
         />
       </Box>
-      <Button icon={<Notification />} onClick={() => toggleSidebar()} />
-      <Box direction='row' alignContent='center' justify='between'>
+      <Box direction='row' alignContent='center' justify='between' pad='medium'>
         <Anchor href='#' size='medium' margin={anchorMargins} label='Home' />
         <Anchor
           href='#'
@@ -43,6 +50,7 @@ const HeaderArea = (props: propTypes) => {
           margin={anchorMargins}
           label='Community'
         />
+        <Button icon={themeIcon} onClick={() => toggleSidebar()} />
       </Box>
     </AppBar>
   );

@@ -1,13 +1,5 @@
-import React, { useState, createContext } from 'react';
-import {
-  Box,
-  Button,
-  Collapsible,
-  Grommet,
-  Layer,
-  ResponsiveContext,
-} from 'grommet';
-import { FormClose } from 'grommet-icons';
+import React, { useState } from 'react';
+import { Box, Grommet, ResponsiveContext } from 'grommet';
 import { customTheme } from './App.theme';
 
 import HeaderArea from './components/HeaderArea';
@@ -43,43 +35,6 @@ function App() {
               <Box flex align='center' justify='center'>
                 app body
               </Box>
-              {!showSidebar || size !== 'small' ? (
-                <Collapsible direction='horizontal' open={showSidebar}>
-                  <Box
-                    flex
-                    width='medium'
-                    background='transparent'
-                    elevation='small'
-                    align='center'
-                    justify='center'
-                  >
-                    sidebar
-                  </Box>
-                </Collapsible>
-              ) : (
-                <Layer>
-                  <Box
-                    background='transparent'
-                    tag='header'
-                    justify='end'
-                    align='center'
-                    direction='row'
-                  >
-                    <Button
-                      icon={<FormClose />}
-                      onClick={() => setShowSidebar(false)}
-                    />
-                  </Box>
-                  <Box
-                    fill
-                    background='light-2'
-                    align='center'
-                    justify='center'
-                  >
-                    sidebar
-                  </Box>
-                </Layer>
-              )}
             </Box>
           </Box>
         )}
