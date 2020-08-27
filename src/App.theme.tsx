@@ -66,6 +66,7 @@ export const customTheme = deepFreeze({
       'accent-3': '#24a19c',
       'dark-1': '#000001',
       'dark-2': '#646569',
+      'dark-3': '#222222',
       'neutral-1': '#646569',
       'neutral-2': '#004876',
       'neutral-3': '#004876',

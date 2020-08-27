@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, createContext } from 'react';
 import {
   Box,
   Button,
@@ -23,12 +23,22 @@ function App() {
     setThemeMode(themeMode === 'light' ? 'dark' : 'light');
   };
 
+  const appBackground = {
+    dark: 'dark-3',
+    light: '#ffffff',
+  };
+
   return (
-    <Grommet themeMode={themeMode} theme={customTheme} full>
+    <Grommet
+      themeMode={themeMode}
+      theme={customTheme}
+      background={appBackground}
+      full
+    >
       <ResponsiveContext.Consumer>
         {(size) => (
           <Box fill>
-            <HeaderArea toggleSidebar={toggleSidebar} />
+            <HeaderArea toggleSidebar={toggleSidebar} themeMode={themeMode} />
             <Box direction='row' flex overflow={{ horizontal: 'hidden' }}>
               <Box flex align='center' justify='center'>
                 app body
@@ -38,7 +48,7 @@ function App() {
                   <Box
                     flex
                     width='medium'
-                    background='light-2'
+                    background='transparent'
                     elevation='small'
                     align='center'
                     justify='center'
@@ -49,7 +59,7 @@ function App() {
               ) : (
                 <Layer>
                   <Box
-                    background='light-2'
+                    background='transparent'
                     tag='header'
                     justify='end'
                     align='center'
