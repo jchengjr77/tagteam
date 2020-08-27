@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Box, Grommet, ResponsiveContext } from 'grommet';
 import { customTheme } from './App.theme';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+import AppRoutes from './components/AppRoutes';
 
 import HeaderArea from './components/HeaderArea';
 
@@ -27,18 +30,18 @@ function App() {
       background={appBackground}
       full
     >
-      <ResponsiveContext.Consumer>
-        {(size) => (
-          <Box fill>
-            <HeaderArea toggleSidebar={toggleSidebar} themeMode={themeMode} />
-            <Box direction='row' flex overflow={{ horizontal: 'hidden' }}>
-              <Box flex align='center' justify='center'>
-                app body
+      <Router>
+        <ResponsiveContext.Consumer>
+          {(size) => (
+            <Box fill>
+              <HeaderArea toggleSidebar={toggleSidebar} themeMode={themeMode} />
+              <Box direction='row' flex overflow={{ horizontal: 'hidden' }}>
+                <AppRoutes />
               </Box>
             </Box>
-          </Box>
-        )}
-      </ResponsiveContext.Consumer>
+          )}
+        </ResponsiveContext.Consumer>
+      </Router>
     </Grommet>
   );
 }

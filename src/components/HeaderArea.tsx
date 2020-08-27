@@ -37,19 +37,14 @@ const HeaderArea = (props: propTypes) => {
         />
       </Box>
       <Box direction='row' alignContent='center' justify='between' pad='medium'>
-        <Anchor href='#' size='medium' margin={anchorMargins} label='Home' />
+        <Anchor href='/' size='medium' margin={anchorMargins} label='Home' />
         <Anchor
-          href='#'
+          href='/features'
           size='medium'
           margin={anchorMargins}
           label='Features'
         />
-        <Anchor
-          href='#'
-          size='medium'
-          margin={anchorMargins}
-          label='Community'
-        />
+        <Anchor size='medium' margin={anchorMargins} label='Community' />
         <Button icon={themeIcon} onClick={() => toggleSidebar()} />
       </Box>
     </AppBar>
