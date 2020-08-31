@@ -9,7 +9,7 @@ const AppBar = (props: any) => (
     justify='between'
     background='white'
     pad={{ left: 'medium', right: 'small', vertical: 'small' }}
-    elevation='xsmall'
+    elevation='none'
     style={{ zIndex: '1' }}
     {...props}
   />

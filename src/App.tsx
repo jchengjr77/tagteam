@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Grommet, ResponsiveContext } from 'grommet';
 import { customTheme } from './App.theme';
 import { BrowserRouter as Router } from 'react-router-dom';
+
+// state management
+import { useStoreState, useStoreActions } from './store/hooks';
 
 import AppRoutes from './components/AppRoutes';
 
 import HeaderArea from './components/HeaderArea';
 
-type ThemeState = 'dark' | 'light' | undefined;
-
 function App() {
-  const [showSidebar, setShowSidebar] = useState(false);
-  const [themeMode, setThemeMode] = useState<ThemeState>('light');
+  const theme = useStoreState((state) => state.theme.themeMode);
+  const switchTheme = useStoreActions((actions) => actions.theme.switchTheme);
 
-  const toggleSidebar = () => {
-    setShowSidebar(!showSidebar);
-    setThemeMode(themeMode === 'light' ? 'dark' : 'light');
+  const toggleTheme = () => {
+    const newThemeMode = theme === 'light' ? 'dark' : 'light';
+    switchTheme(newThemeMode);
   };
 
   const appBackground = {
@@ -25,7 +26,7 @@ function App() {
 
   return (
     <Grommet
-      themeMode={themeMode}
+      themeMode={theme}
       theme={customTheme}
       background={appBackground}
       full
@@ -34,10 +35,8 @@ function App() {
         <ResponsiveContext.Consumer>
           {(size) => (
             <Box fill>
-              <HeaderArea toggleSidebar={toggleSidebar} themeMode={themeMode} />
-              <Box direction='row' flex overflow={{ horizontal: 'hidden' }}>
-                <AppRoutes />
-              </Box>
+              <HeaderArea toggleSidebar={toggleTheme} themeMode={theme} />
+              <AppRoutes />
             </Box>
           )}
         </ResponsiveContext.Consumer>
