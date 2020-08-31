@@ -9,16 +9,17 @@ import { Actions } from 'grommet-icons';
 interface propTypes {
   toggleSidebar: () => void;
   themeMode: string | undefined;
+  size: string | undefined;
 }
 
 const HeaderArea = (props: propTypes) => {
   // get theme mode using grommetTheme.dark (boolean)
 
-  let { toggleSidebar, themeMode } = props;
+  let { toggleSidebar, themeMode, size } = props;
 
   const anchorMargins = {
-    horizontal: 'large',
-    vertical: 'auto',
+    horizontal: size !== 'small' ? 'large' : 'small',
+    vertical: 'small',
   };
 
   const themeIcon =
@@ -29,14 +30,14 @@ const HeaderArea = (props: propTypes) => {
     );
 
   return (
-    <AppBar background='transparent'>
-      <Box height='xsmall' width='medium'>
+    <AppBar background='transparent' size={size}>
+      <Box height='xsmall' width={size !== 'small' ? 'medium' : 'small'}>
         <Image
           src={themeMode === 'dark' ? logoDark : logoLight}
           fit='contain'
         />
       </Box>
-      <Box direction='row' alignContent='center' justify='between' pad='medium'>
+      <Box direction='row' alignContent='start' justify='between' pad='medium'>
         <Anchor href='/' size='medium' margin={anchorMargins} label='Home' />
         <Anchor
           href='/features'

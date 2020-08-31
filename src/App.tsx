@@ -35,7 +35,11 @@ function App() {
         <ResponsiveContext.Consumer>
           {(size) => (
             <Box fill>
-              <HeaderArea toggleSidebar={toggleTheme} themeMode={theme} />
+              <HeaderArea
+                toggleSidebar={toggleTheme}
+                themeMode={theme}
+                size={size}
+              />
               <AppRoutes />
             </Box>
           )}

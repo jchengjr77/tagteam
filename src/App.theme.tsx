@@ -1,5 +1,18 @@
 import { deepFreeze } from 'grommet/utils';
 
+type BorderSidesType =
+  | 'all'
+  | 'horizontal'
+  | 'vertical'
+  | 'start'
+  | 'end'
+  | 'top'
+  | 'left'
+  | 'bottom'
+  | 'right'
+  | 'between'
+  | undefined;
+
 export const customTheme = deepFreeze({
   global: {
     font: {
@@ -59,8 +72,10 @@ export const customTheme = deepFreeze({
     },
     colors: {
       brand: '#ff5f40',
+      hoverBrand: '#ffaf95',
       control: '#ff5f40',
       focus: '#ffc7c7',
+      border: 'accent-1',
       'accent-1': '#9fd4c9',
       'accent-2': '#6ebfb5',
       'accent-3': '#24a19c',
@@ -76,6 +91,16 @@ export const customTheme = deepFreeze({
       'status-unknown': '#C3C5C8',
       'status-disabled': '#C3C5C8',
     },
+    control: {
+      border: {
+        width: '1px',
+        radius: '25px',
+      },
+    },
+    hover: {
+      background: 'hoverBrand',
+      color: 'white',
+    },
   },
   anchor: {
     hover: {
@@ -89,5 +114,31 @@ export const customTheme = deepFreeze({
       light: 'accent-3',
     },
     fontWeight: 500,
+  },
+  heading: {
+    weight: 600,
+  },
+  formField: {
+    border: {
+      color: 'brand',
+      side: 'all' as BorderSidesType,
+    },
+  },
+  button: {
+    color: 'white',
+    border: {
+      radius: '25px',
+      width: '0px',
+    },
+    primary: {
+      extend: () => ({
+        minWidth: '15vw',
+      }),
+    },
+  },
+  text: {
+    medium: {
+      size: '20px',
+    },
   },
 });

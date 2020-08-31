@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import { Box } from 'grommet';
+import Home from '../pages/Home';
 
 const AppRoutes = () => {
   return (
@@ -13,9 +14,7 @@ const AppRoutes = () => {
       </Route>
       {/* default route */}
       <Route path='/'>
-        <Box flex align='center' justify='center'>
-          home
-        </Box>
+        <Home />
       </Route>
     </Switch>
   );
