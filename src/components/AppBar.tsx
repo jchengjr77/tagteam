@@ -10,17 +10,25 @@ interface AppBarProps {
 const AppBar = (props: AppBarProps) => {
   const { size } = props;
 
+  const headerPadding =
+    size !== 'small'
+      ? {
+          horizontal: 'large',
+          vertical: 'small',
+        }
+      : {};
+
   return (
     <Box
       tag='header'
       direction={size !== 'small' ? 'row' : 'column'}
       align='center'
       justify='between'
-      pad={{ left: 'medium', right: 'small', vertical: 'small' }}
+      pad={headerPadding}
       elevation='none'
       style={{ zIndex: 1 }}
       responsive
-      width={size === 'small' ? '100vw' : 'auto'}
+      width={size !== 'small' ? '100vw' : 'auto'}
       {...props}
     />
   );

@@ -94,7 +94,7 @@ export const customTheme = deepFreeze({
     control: {
       border: {
         width: '1px',
-        radius: '25px',
+        radius: '15px',
       },
     },
     hover: {
@@ -127,12 +127,13 @@ export const customTheme = deepFreeze({
   button: {
     color: 'white',
     border: {
-      radius: '25px',
+      radius: '15px',
       width: '0px',
     },
     primary: {
       extend: () => ({
-        minWidth: '15vw',
+        minWidth: '10vw',
+        minHeight: '5vh',
       }),
     },
   },

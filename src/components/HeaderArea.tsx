@@ -6,16 +6,20 @@ import logoDark from '../assets/logo-dark.svg';
 import { Image, Button, Anchor, Box } from 'grommet';
 import { Actions } from 'grommet-icons';
 
+// state management
+import { useStoreState } from 'easy-peasy';
+
 interface propTypes {
   toggleSidebar: () => void;
   themeMode: string | undefined;
-  size: string | undefined;
 }
 
 const HeaderArea = (props: propTypes) => {
+  const size = useStoreState((state) => state.displaySize.size);
+
   // get theme mode using grommetTheme.dark (boolean)
 
-  let { toggleSidebar, themeMode, size } = props;
+  let { toggleSidebar, themeMode } = props;
 
   const anchorMargins = {
     horizontal: size !== 'small' ? 'large' : 'small',
@@ -29,6 +33,11 @@ const HeaderArea = (props: propTypes) => {
       <Actions color='dark-2' />
     );
 
+  const buttonPadding = {
+    left: 'small',
+    right: 'large',
+  };
+
   return (
     <AppBar background='transparent' size={size}>
       <Box height='xsmall' width={size !== 'small' ? 'medium' : 'small'}>
@@ -37,7 +46,12 @@ const HeaderArea = (props: propTypes) => {
           fit='contain'
         />
       </Box>
-      <Box direction='row' alignContent='start' justify='between' pad='medium'>
+      <Box
+        direction='row'
+        alignContent='start'
+        justify='between'
+        pad={buttonPadding}
+      >
         <Anchor href='/' size='medium' margin={anchorMargins} label='Home' />
         <Anchor
           href='/features'

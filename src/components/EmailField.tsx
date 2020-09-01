@@ -1,21 +1,42 @@
 import React, { useState } from 'react';
 import { Box, TextInput, Button } from 'grommet';
-import { Mail } from 'grommet-icons';
-// import { StyledPrimaryButton } from './EmailField.styles';
+import { Mail, Lock } from 'grommet-icons';
+
+// state management
+import { useStoreState } from 'easy-peasy';
+
+// firebase
+import auth from '../fire';
 
 const EmailField = () => {
+  const size = useStoreState((state) => state.displaySize.size);
+
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
-  const buttonMargins = {
-    horizontal: 'small',
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
   };
 
+  const buttonMargins =
+    size !== 'small'
+      ? {
+          horizontal: 'small',
+        }
+      : {
+          vertical: 'small',
+        };
+
   return (
-    <Box margin='large' direction='row'>
+    <Box
+      gap='small'
+      pad='large'
+      direction={size !== 'small' ? 'row' : 'column'}
+    >
       <TextInput
         placeholder='Email Address'
         value={email}
@@ -23,10 +44,19 @@ const EmailField = () => {
         size='medium'
         icon={<Mail />}
       />
+      <TextInput
+        placeholder='Password'
+        value={password}
+        onChange={handlePasswordChange}
+        size='medium'
+        icon={<Lock />}
+        type='password'
+      />
       <Button
         margin={buttonMargins}
         primary
-        label='Get Early Access'
+        size='medium'
+        label='Register'
         hoverIndicator
       />
     </Box>

@@ -13,6 +13,9 @@ import HeaderArea from './components/HeaderArea';
 function App() {
   const theme = useStoreState((state) => state.theme.themeMode);
   const switchTheme = useStoreActions((actions) => actions.theme.switchTheme);
+  const setDisplaySize = useStoreActions(
+    (actions) => actions.displaySize.setSize
+  );
 
   const toggleTheme = () => {
     const newThemeMode = theme === 'light' ? 'dark' : 'light';
@@ -33,16 +36,15 @@ function App() {
     >
       <Router>
         <ResponsiveContext.Consumer>
-          {(size) => (
-            <Box fill>
-              <HeaderArea
-                toggleSidebar={toggleTheme}
-                themeMode={theme}
-                size={size}
-              />
-              <AppRoutes />
-            </Box>
-          )}
+          {(size) => {
+            setDisplaySize(size);
+            return (
+              <Box fill align='center'>
+                <HeaderArea toggleSidebar={toggleTheme} themeMode={theme} />
+                <AppRoutes />
+              </Box>
+            );
+          }}
         </ResponsiveContext.Consumer>
       </Router>
     </Grommet>
